@@ -1,0 +1,11 @@
+apiVersion: mq.iotoperations.azure.com/v1beta1
+kind: DiagnosticService
+metadata:
+  name: "broker"
+  namespace: azure-iot-operations
+spec:
+  image:
+    repository: mcr.microsoft.com/azureiotoperations/diagnostics-service
+    tag: 0.1.0-preview
+  logLevel: info
+  logFormat: text

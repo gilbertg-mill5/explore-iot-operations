@@ -1,0 +1,69 @@
+apiVersion: mq.iotoperations.azure.com/v1beta1
+kind: Broker
+metadata:
+  annotations:
+    management.azure.com/apiVersion: 2023-10-04-preview
+    management.azure.com/bridgeLocation: EastUS2
+    management.azure.com/cloudEnvironment: AzureCloud
+    management.azure.com/correlationId: b77bffed-493f-404c-b906-b848d15ff4a9
+    management.azure.com/customLocation: /subscriptions/a5121b8e-b60f-442c-a106-c7cdf2fa8196/resourceGroups/training/providers/Microsoft.ExtendedLocation/customLocations/dev_cluster-cl
+    management.azure.com/location: eastus
+    management.azure.com/operationId: d9f54fe9-ac64-473e-a8a5-f3a8b124f910*FE6A560DCF7691215E3E42C7F6A57C59F0243C18E74F88B65A569790FE7A8800
+    management.azure.com/parentResourceId: /subscriptions/a5121b8e-b60f-442c-a106-c7cdf2fa8196/resourceGroups/training/providers/Microsoft.IoTOperationsMQ/mq/mq-instance
+    management.azure.com/resourceId: /subscriptions/a5121b8e-b60f-442c-a106-c7cdf2fa8196/resourceGroups/training/providers/Microsoft.IoTOperationsMQ/mq/mq-instance/broker/broker
+    management.azure.com/systemData: '{"createdBy":"6196eac9-a360-4ed6-b33e-6b514204787d","createdByType":"User","createdAt":"2023-12-19T17:17:12.1623103Z","resourceUID":"3cb54da7-7b20-444f-85d9-b80a18db1de7","clientLocation":"brazilsouth"}'
+    management.azure.com/tenantId: 60dd1145-8a3f-4e60-86a0-3db7d9a8b09b
+    traceparent: 00-4483b6dc85fb7e753d6b825d5c6099d5-b9c06c45293c615c-01
+  creationTimestamp: "2023-12-19T17:17:16Z"
+  generation: 1
+  name: broker
+  namespace: azure-iot-operations
+  ownerReferences:
+  - apiVersion: iotoperations.azure.com/v1beta1
+    kind: MQ
+    name: mq-instance
+    uid: 8c531179-e4f3-4f6e-9347-3d379b5db554
+  resourceVersion: "13626"
+  uid: 6b4ed646-aefb-4964-9468-51d658867a4a
+spec:
+  authImage:
+    pullPolicy: Always
+    repository: mcr.microsoft.com/azureiotoperations/dmqtt-authentication
+    tag: 0.2.0-preview
+  brokerImage:
+    pullPolicy: Always
+    repository: mcr.microsoft.com/azureiotoperations/dmqtt-pod
+    tag: 0.2.0-preview
+  cardinality:
+    backendChain:
+      partitions: 2
+      redundancyFactor: 2
+      workers: 2
+    frontend:
+      replicas: 2
+      workers: 2
+  diagnostics:
+    enableMetrics: true
+    enableSelfCheck: true
+    enableSelfTracing: true
+    enableTracing: true
+    logFormat: text
+    logLevel: info,hyper=off,kube_client=off,tower=off,conhash=off,h2=off
+    maxCellMapLifetime: 60
+    metricUpdateFrequencySeconds: 30
+    probeImage: mcr.microsoft.com/azureiotoperations/diagnostics-probe:0.2.0-preview
+    selfCheckFrequencySeconds: 30
+    selfCheckTimeoutSeconds: 15
+    selfTraceFrequencySeconds: 30
+    spanChannelCapacity: 1000
+  encryptInternalTraffic: true
+  healthManagerImage:
+    pullPolicy: Always
+    repository: mcr.microsoft.com/azureiotoperations/dmqtt-operator
+    tag: 0.2.0-preview
+  memoryProfile: medium
+  mode: auto
+status:
+  status: Running
+  statusDescription: All back and frontend replicas are running
+

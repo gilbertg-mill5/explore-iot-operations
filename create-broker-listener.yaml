@@ -1,0 +1,28 @@
+apiVersion: mq.iotoperations.azure.com/v1beta1
+kind: BrokerListener
+metadata:
+  name: my-test-listener
+  namespace: azure-iot-operations
+spec:
+  authenticationEnabled: false
+  authorizationEnabled: false
+  brokerRef: broker
+  port: 1883
+---
+apiVersion: mq.iotoperations.azure.com/v1beta1
+kind: BrokerListener
+metadata:
+  name: my-secure-listener
+  namespace: azure-iot-operations
+spec:
+  authenticationEnabled: true
+  authorizationEnabled: false
+  brokerRef: broker
+  port: 8883
+  tls:
+    automatic:
+      issuerRef:
+        name: e2e-cert-issuer
+        kind: Issuer
+        group: cert-manager.io
+
